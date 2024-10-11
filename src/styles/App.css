@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Bungee+Spice");
+@font-face {
+  font-family: "Lemon";
+  src: url("../src/asset/Tektur/Tektur-VariableFont_wdth\,wght.ttf");
+}
+
+html,
+* {
+  margin: 0;
+  padding: 0;
+  /* height: 100%; */
+}
+* {
+  box-sizing: border-box;
+  /* background-color: black; */
+}
+
+#root {
+  display: grid;
+  height: 110%;
+  background-color: rgb(243, 238, 238);
+  width: 100vw;
+  height: 100vh;
+}
+
+.item {
+  display: flex;
+  font-size: 0.9em;
+  padding-left: 20px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  /* background-color: bisque; */
+  flex-direction: column;
+  background: linear-gradient(
+    rgba(166, 240, 255, 1) 0%,
+    rgba(220, 250, 255, 1) 0%,
+    rgba(230, 252, 255, 1) 0%
+  );
+}
+
+.item:hover {
+  cursor: pointer;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  /* text-shadow: 1px 1px 2px rgb(28, 28, 75); */
+}
+
+.titleText {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.accordianStatus {
+  font-size: 30px;
+  color: blueviolet;
+  margin-right: 10px;
+}
+
+.PersonalDetailsForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.educationDetailsForm {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  background: #efefef;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  background: 0;
+  width: 90%;
+  border: 0;
+  outline: none;
+  height: 25px;
+  font-size: 1.1em;
+  transition: padding 0.3s 0.2s ease;
+
+  &:focus {
+    padding-bottom: 5px;
+  }
+
+  &:focus + .line {
+    &:after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.menuToggle {
+  display: flex;
+  flex-direction: column;
+}
+
+.ps-menu-label {
+  display: flex;
+  justify-content: space-between;
+}
+
+textarea {
+  background: 0;
+  border: 0;
+  width: 90%;
+  outline: none;
+  height: 50px;
+  font-size: 1.1em;
+  transition: padding 0.3s 0.2s ease;
+
+  &:focus {
+    padding-bottom: 5px;
+  }
+
+  &:focus + .line {
+    &:after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.field {
+  margin-bottom: 10px;
+  position: relative;
+  .line {
+    width: 95%;
+    height: 3px;
+    position: absolute;
+    background: #bdc3c7;
+
+    &:after {
+      content: " ";
+      position: absolute;
+      float: right;
+      width: 100%;
+      height: 3px;
+
+      transform: scalex(0);
+      transition: transform 0.3s ease;
+
+      background: #1abc9c;
+    }
+  }
+}
+
+#annoyingField {
+  margin-bottom: 20px;
+}
+
+.submitBtn {
+  display: flex;
+  width: 80px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 30px;
+  padding: 0px 15px;
+  text-shadow: rgb(0 0 0 / 25%) 0px 3px 8px;
+  background: linear-gradient(
+    92.88deg,
+    rgb(69, 94, 181) 9.16%,
+    rgb(86, 67, 204) 43.89%,
+    rgb(103, 63, 215) 64.72%
+  );
+  transition: all 0.5s ease 0s;
+
+  align-self: flex-end;
+  margin-right: 10px;
+}
+
+.submitBtn:hover {
+  box-shadow: rgb(80 63 205 / 50%) 0px 1px 40px;
+  transition: all 0.1s ease 0s;
+}
+
+.editImg {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+}
+
+.editImg:hover {
+  width: 22px;
+  height: 22px;
+}
+
+.crossImg {
+  justify-self: flex-end;
+  margin-left: auto;
+  margin-right: 20px;
+  width: 15px;
+  height: 15px;
+  transition:
+    width 1s,
+    height 1s,
+    background-color 1s,
+    rotate 1s;
+}
+
+.crossImg:hover {
+  width: 20px;
+  height: 20px;
+  rotate: 90deg;
+  /* rotate: -90deg; */
+}
+
+.educationItem {
+  display: flex;
+  font-size: 100 vw;
+  height: 35px;
+  padding-left: 15px;
+  border-radius: 7px;
+  color: darkcyan;
+  margin-bottom: 5px;
+  align-items: center;
+}
+
+.educationItem:hover {
+  /* border: black 1px solid; */
+  background-color: rgb(190, 186, 186);
+}
