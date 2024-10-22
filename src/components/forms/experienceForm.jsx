@@ -1,13 +1,13 @@
-import { nanoid } from "nanoid";
 import React, { useState } from "react";
-import crossImg from "../../assets/cross.svg";
+import { nanoid } from "nanoid";
 import editImg from "../../assets/edit-btn.svg";
-import "../../styles/App.css";
+import crossImg from "../../assets/cross.svg";
 import Panel from "../panel";
+import "../../styles/App.css";
 // EducationDetails returns the html for the component based on arguments
-export function EducationDetails({
+export function ExperienceForm({
   isActive,
-  setEducationDetails,
+  setExperienceDetails,
   activeItemState,
   activeItemId,
   setActiveItemState,
@@ -15,25 +15,34 @@ export function EducationDetails({
 }) {
   const [items, setItems] = useState(() => [
     {
-      school: "havard",
-      degree: "cs",
+      companyName: "havard",
+      position: "cs",
+      description: "i am your sunshine",
       startDate: 2023 - 10 - 14,
       endDate: 2024 - 10 - 14,
       id: nanoid(),
     },
     {
-      school: "anjuman",
-      degree: "menchanical",
+      companyName: "anjuman",
+      position: "menchanical",
+      description: "i am your sunshine",
       startDate: 2023 - 10 - 14,
       endDate: 2024 - 10 - 14,
       id: nanoid(),
     },
   ]);
-  const addItem = (school, degree, startDate, endDate) => {
-    if (school === "" || degree === "") {
+  const addItem = (companyName, position, description, startDate, endDate) => {
+    if (companyName === "" || position === "") {
       return;
     }
-    const newItem = { school, degree, startDate, endDate, id: nanoid() }; // New item with a unique ID
+    const newItem = {
+      companyName,
+      position,
+      description,
+      startDate,
+      endDate,
+      id: nanoid(),
+    }; // New item with a unique ID
     setItems((prevItems) => [...prevItems, newItem]); // Append new item to the current list
   };
   const removeItem = (id) => {
@@ -50,17 +59,17 @@ export function EducationDetails({
   function editItem(id) {
     let tempItems = items.map((element) => {
       if (element.id === id) {
-        let school = tempSchool;
-        let degree = tempDegree;
+        let companyName = tempCompanyName;
+        let position = tempPosition;
         let startDate = tempStartDate;
         let endDate = tempEndDate;
-        setTempSchool("");
-        setTempDegree("");
+        setTempCompanyName("");
+        setTempPosition("");
         setTempStartDate("");
         setTempEndDate("");
         return {
-          school: school,
-          degree: degree,
+          companyName: companyName,
+          position: position,
           startDate: startDate,
           endDate: endDate,
           id: element.id,
@@ -70,40 +79,44 @@ export function EducationDetails({
     });
     setItems(tempItems);
   }
-  const [tempSchool, setTempSchool] = useState("");
-  const [tempDegree, setTempDegree] = useState("");
+  const [tempCompanyName, setTempCompanyName] = useState("");
+  const [tempPosition, setTempPosition] = useState("");
   const [tempStartDate, setTempStartDate] = useState("");
   const [tempEndDate, setTempEndDate] = useState("");
+  const [tempDescription, setTempDescription] = useState("");
   function resetTemps() {
-    setTempSchool("");
-    setTempDegree("");
+    setTempCompanyName("");
+    setTempPosition("");
     setTempStartDate("");
     setTempEndDate("");
+    setTempDescription("");
   }
   if (activeItemState) {
+    let tempItem = getItemById(activeItemId);
     console.log(activeItemId);
     return (
       <form action="" className="educationDetailsForm">
-        <label htmlFor="schoolName">School </label>
+        <label htmlFor="companyNameName">companyName </label>
         <div className="field">
           <input
             type="text"
-            id="schoolName"
-            value={tempSchool}
-            onChange={(e) => setTempSchool(e.target.value)}
+            id="companyNameName"
+            value={tempCompanyName}
+            onChange={(e) => setTempCompanyName(e.target.value)}
           />
           <div className="line"></div>
         </div>
-        <label htmlFor="degree">Degree </label>
+        <label htmlFor="position">Position </label>
         <div className="field">
           <input
             type="text"
-            id="degree"
-            value={tempDegree}
-            onChange={(e) => setTempDegree(e.target.value)}
+            id="position"
+            value={tempPosition}
+            onChange={(e) => setTempPosition(e.target.value)}
           />
           <div className="line"></div>
         </div>
+
         <label htmlFor="educationStartDate">Start date:</label>
         <input
           type="date"
@@ -123,7 +136,7 @@ export function EducationDetails({
           className="submitBtn"
           onClick={() => {
             editItem(activeItemId);
-            setEducationDetails(false);
+            setExperienceDetails(false);
             setActiveItemState(false);
           }}
         >
@@ -133,8 +146,8 @@ export function EducationDetails({
     );
   } else {
     if (
-      (tempSchool !== "" ||
-        tempDegree !== "" ||
+      (tempCompanyName !== "" ||
+        tempPosition !== "" ||
         tempStartDate !== "" ||
         tempEndDate !== "") &&
       !isActive
@@ -143,23 +156,33 @@ export function EducationDetails({
     }
     return isActive ? (
       <form action="" className="educationDetailsForm">
-        <label htmlFor="schoolName">School </label>
+        <label htmlFor="companyNameName">Company </label>
         <div className="field">
           <input
             type="text"
-            id="schoolName"
-            value={tempSchool}
-            onChange={(e) => setTempSchool(e.target.value)}
+            id="companyNameName"
+            value={tempCompanyName}
+            onChange={(e) => setTempCompanyName(e.target.value)}
           />
           <div className="line"></div>
         </div>
-        <label htmlFor="degree">Degree </label>
+        <label htmlFor="position">Position </label>
         <div className="field">
           <input
             type="text"
-            id="degree"
-            value={tempDegree}
-            onChange={(e) => setTempDegree(e.target.value)}
+            id="position"
+            value={tempPosition}
+            onChange={(e) => setTempPosition(e.target.value)}
+          />
+          <div className="line"></div>
+        </div>
+        <label htmlFor="experienceDescription">description</label>
+        <div className="field">
+          <textarea
+            type="text"
+            id="experienceDescription"
+            value={tempDescription}
+            onChange={(e) => setTempDescription(e.target.value)}
           />
           <div className="line"></div>
         </div>
@@ -183,12 +206,15 @@ export function EducationDetails({
           type="button"
           className="submitBtn"
           onClick={() => {
-            addItem(tempSchool, tempDegree, tempStartDate, tempEndDate);
-            setEducationDetails(false);
-            setTempStartDate("");
-            setTempEndDate("");
-            setTempSchool("");
-            setTempDegree("");
+            addItem(
+              tempCompanyName,
+              tempPosition,
+              tempDescription,
+              tempStartDate,
+              tempEndDate,
+            );
+            setExperienceDetails(false);
+            resetTemps();
           }}
         >
           Add
@@ -204,23 +230,19 @@ export function EducationDetails({
             onClick={() => {
               setActiveItemState(true);
               setActiveItemId(element.id);
-              setTempSchool(element.school);
-              setTempDegree(element.degree);
+              setTempCompanyName(element.companyName);
+              setTempPosition(element.position);
               setTempStartDate(element.startDate);
               setTempEndDate(element.endDate);
             }}
           />{" "}
-          {element.school}
+          {element.companyName}
           <img
             src={crossImg}
             alt=""
             className="crossImg"
             onClick={() => {
               removeItem(element.id);
-              setTempDegree("");
-              setTempSchool("");
-              setTempStartDate("");
-              setTempEndDate("");
             }}
           />
         </div>
@@ -232,30 +254,29 @@ export function EducationDetails({
 export function EducationSavedBar({ details }) {
   return (
     <div className="educationItem">
-      <img src={editImg} alt="" className="editImg" /> {details.school}
+      <img src={editImg} alt="" className="editImg" /> {details.companyName}
     </div>
   );
 }
 
-export function EducationDetailsPanel({ inActivePanel }) {
-  const [educationDetailsIsActive, setEducationDetails] = useState(false);
+export function ExperienceDetailsPanel({ inActivePanel }) {
+  const [experienceDetailsIsActive, setExperienceDetails] = useState(false);
   const [activeItemState, setActiveItemState] = useState(false);
   const [activeItemId, setActiveItemId] = useState(0);
-
   if (inActivePanel) {
-    if (educationDetailsIsActive) {
-      setEducationDetails(false);
+    if (experienceDetailsIsActive) {
+      setExperienceDetails(false);
       setActiveItemState(false);
     }
   }
   return (
     <Panel
-      title={"Education: "}
-      isActive={educationDetailsIsActive}
+      title={"Work Experience "}
+      isActive={experienceDetailsIsActive}
       innerBody={
-        <EducationDetails
-          isActive={educationDetailsIsActive}
-          setEducationDetails={setEducationDetails}
+        <ExperienceForm
+          isActive={experienceDetailsIsActive}
+          setExperienceDetails={setExperienceDetails}
           activeItemState={activeItemState}
           activeItemId={activeItemId}
           setActiveItemState={setActiveItemState}
@@ -264,15 +285,11 @@ export function EducationDetailsPanel({ inActivePanel }) {
         />
       }
       clickHandler={() => {
-        // if (inActivePanel && !educationDetailsIsActive) {
-        //   setEducationDetails(true);
-        //   setActiveItemState(false);
-        // }
         if (activeItemState) {
           setActiveItemState(false);
-          setEducationDetails(false);
+          setExperienceDetails(false);
         } else {
-          setEducationDetails(!educationDetailsIsActive);
+          setExperienceDetails(!experienceDetailsIsActive);
         }
       }}
     />

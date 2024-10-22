@@ -1,0 +1,78 @@
+.page {
+  background-color: white;
+  display: grid;
+  grid-template-rows: 15vh;
+  height: 90vh;
+  width: calc(90vh / 1.414);
+  justify-self: center;
+  align-self: center;
+  /* Optional styling to center the div */
+  margin: 0 auto;
+  margin-top: 50px;
+  /* border: black 2px dotted; */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.personalContainer {
+  background-color: rgb(165, 148, 249);
+  display: grid;
+  grid-template-rows: 1fr 1fr 2fr;
+}
+
+.pageFullName {
+  display: flex;
+  color: white;
+  font-size: 2em;
+  align-items: centre;
+  justify-content: center;
+}
+
+.otherPersonalDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 1.2em;
+  color: white;
+.email {
+  display: grid;
+  height: 20px;
+  align-items: center;
+  grid-auto-flow: column;
+  /* gap: 10px; */
+  margin-bottom: 5px;
+}
+img {
+  height: 15px;
+  width: 15px;
+  margin-right: 5px;
+}
+.personalDescription{
+  margin-left: 15px;
+  margin-right: 15px;
+  color: rgb(96, 96, 96); 
+}
+@media (max-width: 800px) {
+  .page {
+    height: 500px;
+    width: calc(500px / 1.414);
+    margin-top: 170px;
+    /* margin-left: 100px; */
+  }
+  .pageFullName{
+    1.5em
+  }
+  .email {
+    gap: 5px;
+  }
+  img {
+    height: 15px;
+    width: 15px;
+  }
+  .otherPersonalDetails{
+    font-size: 0.9em;
+  }
+  .personalDescription{
+    font-size: 13px;
+    margin-left: 5px;
+  }
+}
